@@ -20,13 +20,13 @@ pipeline {
             steps {
                 withCredentials(
                 [usernamePassword(
-                    credentialsId: '<your id>',
-                    passwordVariable: 'gitlabPassword',
-                    usernameVariable: 'gitlabUser'
+                    credentialsId: 'yuwadeesu',
+                    passwordVariable: 'githubPassword',
+                    usernameVariable: 'githubUser'
                 )]
             ){
-                sh "docker login ghcr.io -u ${env.gitlabUser} -p ${env.gitlabPassword}"
-                sh "docker push ${env.IMAGE_NAME}:${env.BUILD_NUMBER}"
+                sh "docker login ghcr.io -u ${env.githubUser} -p ${env.githubPassword}"
+                sh "docker push ghcr.io/yuwadeesu/ssi-repo"
             }
             }
         }
