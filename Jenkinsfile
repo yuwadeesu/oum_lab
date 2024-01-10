@@ -15,5 +15,20 @@ pipeline {
             sh "docker build -t ghcr.io/yuwadeesu/ssi-repo:v2 ."
         }
     }
+   stage('Deliver Docker Image') {
+            agent {label 'build-server'}
+            steps {
+                withCredentials(
+                [usernamePassword(
+                    credentialsId: '<your id>',
+                    passwordVariable: 'gitlabPassword',
+                    usernameVariable: 'gitlabUser'
+                )]
+            ){
+                sh "docker login ghcr.io -u ${env.gitlabUser} -p ${env.gitlabPassword}"
+                sh "docker push ${env.IMAGE_NAME}:${env.BUILD_NUMBER}"
+            }
+            }
+        }
 }
 }
