@@ -11,7 +11,7 @@ pipeline {
     }
    stage('Build Stage (Docker)'){
         agent {label 'build-server'}
-        step{
+        steps{
             sh "docker build -t ghcr.io/yuwadeesu/ssi-repo:v2 ."
         }
     }
