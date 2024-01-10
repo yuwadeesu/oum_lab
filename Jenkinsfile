@@ -12,7 +12,7 @@ pipeline {
    stage('Build Stage (Docker)'){
         agent {label 'build-server'}
         steps{
-            sh "docker build -t ghcr.io/yuwadeesu/ssi-repo:v2 ."
+            sh "docker build -t ghcr.io/yuwadeesu/ssi-repo ."
         }
     }
    stage('Deliver Docker Image') {
