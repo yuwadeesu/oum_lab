@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oum_lab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ssi-repo
+  template:
+    metadata:
+      labels:
+        app: ssi-repo
+    spec:
+      containers:
+        - name: ssi-repo-server
+          image: ghcr.io/yuwadeesu/ssi-repo
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ssi-repo-server
+  labels:
+    app: ssi-repo-server
+spec:
+  selector:
+    app: ssi-repo
+  ports:
+   - name: web-port
+     protocol: TCP
+     port: 8081
+     targetPort: 80
+  type: ClusterIP
