@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ssi-repo
+  name: User04-server
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ssi-repo
+      app: User04-server
   template:
     metadata:
       labels:
-        app: ssi-repo
+        app: User04-server
     spec:
       containers:
-        - name: ssi-repo-server
+        - name: User04-server
           image: ghcr.io/yuwadeesu/ssi-repo
           ports:
             - containerPort: 80
@@ -21,12 +21,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ssi-repo-server
+  name: User04-server
   labels:
-    app: ssi-repo-server
+    app: User04-server
 spec:
   selector:
-    app: ssi-repo
+    app: User04-server
   ports:
    - name: web-port
      protocol: TCP
