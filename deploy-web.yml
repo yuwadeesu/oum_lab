@@ -15,6 +15,7 @@ spec:
       containers:
         - name: user04-server
           image: ghcr.io/yuwadeesu/ssi-repo
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
 ---
